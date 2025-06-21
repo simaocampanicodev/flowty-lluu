@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
     private int currentScore = 0;
     private int highScore = 0;
     private float scoreTimer = 0f;
-    private bool gameStarted = false;
 
     public static GameManager Instance;
 
