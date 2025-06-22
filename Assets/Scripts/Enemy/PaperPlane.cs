@@ -7,22 +7,28 @@ public class PaperPlane : MonoBehaviour
     private Camera mainCamera;
     private Vector2 screenBounds;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         mainCamera = Camera.main;
-        screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
-        if (transform.position.y > screenBounds.y + 1f)
+        if (mainCamera != null)
         {
-            Destroy(gameObject);
+            screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
         }
     }
+
+    void Update()
+    {
+        if (GameManager.Instance != null && GameManager.Instance.currentState == GameManager.GameState.Playing)
+        {
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
+
+            if (transform.position.y > screenBounds.y + 2f)
+            {
+                DestroyPlane();
+            }
+        }
+    }
+
     public void Initialize(PaperPlaneSpawner spawnerRef)
     {
         spawner = spawnerRef;
@@ -46,6 +52,7 @@ public class PaperPlane : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            GameManager.Instance.GameOver();
             DestroyPlane();
         }
     }
