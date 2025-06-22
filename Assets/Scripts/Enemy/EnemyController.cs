@@ -33,18 +33,8 @@ public class EnemyController : MonoBehaviour
         Vector3 direction = (player.position - transform.position).normalized;
         transform.position += direction * chaseSpeed * Time.deltaTime;
 
-        if (direction.x < -0.1f)
-        {
-            targetRotation = -15f;
-        }
-        else if (direction.x > 0.1f)
-        {
-            targetRotation = 15f;
-        }
-        else
-        {
-            targetRotation = 0f;
-        }
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        targetRotation = angle - 90f;
     }
 
     private void HandleRotation()

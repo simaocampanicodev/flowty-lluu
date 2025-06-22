@@ -46,12 +46,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             movement.x -= 1f;
-            targetRotation = -15f;
+            targetRotation = 15f;
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             movement.x += 1f;
-            targetRotation = 15f;
+            targetRotation = -15f;
         }
 
         if (movement.x == 0)

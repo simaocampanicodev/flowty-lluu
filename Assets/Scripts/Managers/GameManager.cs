@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.InputSystem.LowLevel;
@@ -13,11 +14,11 @@ public class GameManager : MonoBehaviour
     public GameObject gameUI;
     public GameObject gameOverUI;
     public GameObject settingsUI;
-    public Text scoreText;
-    public Text finalScoreText;
-    public Text highScoreText;
-    public Text logoText;
-    public Text pressSpaceText;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI finalScoreText;
+    public TextMeshProUGUI highScoreText;
+    public Image logoText;
+    public TextMeshProUGUI pressSpaceText;
 
     [Header("Game Objects")]
     public PlayerController player;
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SetGameState(GameState.MainMenu);
+        SetPlayerAndEnemyVisibility(false);
         Time.timeScale = 1f;
     }
 
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
         if (currentState == GameState.Playing)
         {
             UpdateScore();
+            SetPlayerAndEnemyVisibility(true);
         }
     }
     private void HandleInput()
@@ -147,6 +150,55 @@ public class GameManager : MonoBehaviour
         pressSpaceText.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(true);
     }
+    private IEnumerator ShowPlayerAndEnemy()
+    {
+        SetPlayerAndEnemyVisibility(true);
+        SetPlayerAndEnemyAlpha(0f);
+
+        float fadeTime = 0.3f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeTime);
+            SetPlayerAndEnemyAlpha(alpha);
+            yield return null;
+        }
+
+        SetPlayerAndEnemyAlpha(1f);
+    }
+
+    private void SetPlayerAndEnemyVisibility(bool visible)
+    {
+        if (player != null)
+            player.gameObject.SetActive(visible);
+        if (enemy != null)
+            enemy.gameObject.SetActive(visible);
+    }
+
+    private void SetPlayerAndEnemyAlpha(float alpha)
+    {
+        if (player != null)
+        {
+            SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
+            if (playerSprite != null)
+            {
+                Color playerColor = playerSprite.color;
+                playerSprite.color = new Color(playerColor.r, playerColor.g, playerColor.b, alpha);
+            }
+        }
+
+        if (enemy != null)
+        {
+            SpriteRenderer enemySprite = enemy.GetComponent<SpriteRenderer>();
+            if (enemySprite != null)
+            {
+                Color enemyColor = enemySprite.color;
+                enemySprite.color = new Color(enemyColor.r, enemyColor.g, enemyColor.b, alpha);
+            }
+        }
+    }
     public void GameOver()
     {
         SetGameState(GameState.GameOver);
@@ -175,6 +227,8 @@ public class GameManager : MonoBehaviour
         logoText.color = Color.white;
         pressSpaceText.color = Color.white;
         scoreText.gameObject.SetActive(false);
+
+        SetPlayerAndEnemyVisibility(false);
 
         planeSpawner.ClearAllPlanes();
 
