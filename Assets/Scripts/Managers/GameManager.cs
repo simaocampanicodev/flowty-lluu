@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.InputSystem.LowLevel;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
     public PlayerController player;
     public EnemyController enemy;
     public PaperPlaneSpawner planeSpawner;
+
+    [Header("Logo Animation")]
+    public LogoAnimation logoAnimation;
 
     [Header("Audio")]
     public AudioSource backgroundMusic;
@@ -132,6 +136,11 @@ public class GameManager : MonoBehaviour
         float fadeTime = 0.5f;
         float elapsedTime = 0f;
 
+        if (logoAnimation != null)
+        {
+            logoAnimation.StopAnimation();
+        }
+
         Color logoColor = logoText.color;
         Color pressSpaceColor = pressSpaceText.color;
 
@@ -228,10 +237,13 @@ public class GameManager : MonoBehaviour
         pressSpaceText.color = Color.white;
         scoreText.gameObject.SetActive(false);
 
+        if (logoAnimation != null)
+        {
+            logoAnimation.StartAnimation();
+        }
+
         SetPlayerAndEnemyVisibility(false);
-
         planeSpawner.ClearAllPlanes();
-
         SetGameState(GameState.MainMenu);
     }
     public void OpenSettings()
