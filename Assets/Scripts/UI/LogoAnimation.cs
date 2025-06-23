@@ -23,7 +23,7 @@ public class LogoAnimation : MonoBehaviour
     void Start()
     {
         originalScale = transform.localScale;
-        originalPosition = transform.position;
+        originalPosition = transform.localPosition;
 
         timeOffset = Random.Range(0f, 2f * Mathf.PI);
     }
