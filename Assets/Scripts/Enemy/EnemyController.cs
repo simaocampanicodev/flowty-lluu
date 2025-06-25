@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
 
     private Transform player;
     private Vector3 initialPosition;
+    private Quaternion initialRotation;
     private float targetRotation = 0f;
     private float currentRotationVelocity = 0f;
     private bool isChasing = false;
@@ -17,6 +18,7 @@ public class EnemyController : MonoBehaviour
     {
         player = FindFirstObjectByType<PlayerController>().transform;
         initialPosition = transform.position;
+        initialRotation = transform.rotation;
     }
 
     // Update is called once per frame
@@ -34,7 +36,7 @@ public class EnemyController : MonoBehaviour
         transform.position += direction * chaseSpeed * Time.deltaTime;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        targetRotation = angle - 90f;
+        targetRotation = angle + 90f;
     }
 
     private void HandleRotation()
@@ -47,7 +49,7 @@ public class EnemyController : MonoBehaviour
     {
         isChasing = true;
         transform.position = initialPosition;
-        transform.rotation = Quaternion.identity;
+        transform.rotation = initialRotation;
     }
 
     public void StopChasing()
