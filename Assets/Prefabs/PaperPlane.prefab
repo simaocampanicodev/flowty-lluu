@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7922660880941759253}
   - component: {fileID: 6077026147776961603}
-  - component: {fileID: 511655300984627756}
   - component: {fileID: 8463400227714789571}
-  m_Layer: 0
+  - component: {fileID: 4837608835209343907}
+  m_Layer: 6
   m_Name: PaperPlane
   m_TagString: PaperPlane
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.1548289, y: -0.3324165, z: -0.009870676}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -3452966054168446565, guid: 4d7424df03d75814d8ad678ba675771b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -89,8 +89,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &511655300984627756
-CapsuleCollider2D:
+--- !u!114 &8463400227714789571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734158095703065816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb226f3e3c9c19488e090fb713be6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!60 &4837608835209343907
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -123,18 +135,51 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.001216066, y: -0.0024323226}
-  m_Size: {x: 0.1765139, y: 0.18277183}
-  m_Direction: 0
---- !u!114 &8463400227714789571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 734158095703065816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bb226f3e3c9c19488e090fb713be6ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 14.18, y: 14.12}
+    newSize: {x: 0.2, y: 0.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 7.0899997, y: -6.68}
+      - {x: 6.98, y: -6.41}
+      - {x: 6.6299996, y: -5.74}
+      - {x: 5.91, y: -4.2999997}
+      - {x: 5.8799996, y: -4.2799997}
+      - {x: 4.7799997, y: -2.08}
+      - {x: 4.06, y: -0.65}
+      - {x: 2.22, y: 3}
+      - {x: 0.29999998, y: 6.7999997}
+      - {x: 0.11, y: 7.0499997}
+      - {x: -0.14999999, y: 7.0499997}
+      - {x: -0.35999998, y: 6.87}
+      - {x: -0.42, y: 6.7}
+      - {x: -1.16, y: 5.23}
+      - {x: -3.57, y: 0.45}
+      - {x: -4.83, y: -2.06}
+      - {x: -7.02, y: -6.39}
+      - {x: -7.08, y: -6.48}
+      - {x: -7.08, y: -6.7999997}
+      - {x: -7.06, y: -6.93}
+      - {x: -6.92, y: -7.02}
+      - {x: -6.64, y: -7.04}
+      - {x: -6.64, y: -7.02}
+      - {x: -1.5799999, y: -7.0299997}
+      - {x: -1.36, y: -6.99}
+      - {x: -1.1, y: -6.8399997}
+      - {x: -0.049999997, y: -6.31}
+      - {x: 0.41, y: -6.5099998}
+      - {x: 1.4699999, y: -7.04}
+      - {x: 1.56, y: -7.06}
+      - {x: 6.5899997, y: -7.0499997}
+      - {x: 6.6, y: -7.06}
+      - {x: 6.8799996, y: -7.06}
+      - {x: 7.0699997, y: -6.93}
+      - {x: 7.0899997, y: -6.8599997}
+  m_UseDelaunayMesh: 0
